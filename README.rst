@@ -37,8 +37,38 @@ django-app-auto-import
     Auto import a module from all yours apps!
 
 
-A longer description of your project goes here...
+Quick Start
+===========
 
+::
+
+    # my.project.settings.py
+    AUTO_IMPORT = 'startup'  # Automatically imports `startup.py` in all apps
+
+This is a pretty simple library so there is not much more to it.
+
+Preventing Unwanted Code Execution
+==================================
+
+Through an allow listing:
+
+::
+
+    # my.project.settings.py
+    AUTO_IMPORT = 'startup'  # Automatically imports `startup.py` in all apps
+    AUTO_IMPORT_ALLOW_LIST = [
+        'my.project.app.name',  # Will only import `my.project.app.name.startup`
+    ]
+
+Through a block list:
+
+::
+
+    # my.project.settings.py
+    AUTO_IMPORT = 'startup'  # Automatically imports `startup.py` in all apps
+    AUTO_IMPORT_BLOCK_LIST = [
+        'my.project.app.name',  # Won't import `my.project.app.name.startup`
+    ]
 
 .. _pyscaffold-notes:
 
