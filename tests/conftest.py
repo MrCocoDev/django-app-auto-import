@@ -7,4 +7,26 @@
     - https://docs.pytest.org/en/stable/writing_plugins.html
 """
 
-# import pytest
+import sys
+
+import pytest
+from django.apps import apps
+
+
+@pytest.fixture(autouse=True)
+def automatic_cleanup():
+    """
+    Clean up imported modules under test and reset Django so
+    that it can set up again.
+    """
+    yield None
+    for name in ('tests.example.other.custom', 'tests.example.third.custom'):
+        try:
+            sys.modules.pop(name)
+        except KeyError:
+            ...
+
+    # Trick Django into setting up again, maybe a little unpredictable
+    apps.ready = False
+    apps.loading = False
+    apps.app_configs = {}
