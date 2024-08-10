@@ -26,6 +26,15 @@
 .. image:: https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold
     :alt: Project generated with PyScaffold
     :target: https://pyscaffold.org/
+.. image:: https://img.shields.io/pypi/v/django-app-auto-import.svg
+    :alt: PyPI-Server
+    :target: https://pypi.org/project/django-app-auto-import/
+.. image:: https://github.com/mrcocodev/django-app-auto-import/actions/workflows/ci.yml/badge.svg?branch=main
+    :alt: GitHub Test CI
+    :target: https://github.com/mrcocodev/django-app-auto-import/actions/workflows/ci.yml
+.. image:: https://pepy.tech/badge/django-app-auto-import/month
+    :alt: Monthly Downloads
+    :target: https://pepy.tech/project/django-app-auto-import
 
 |
 
