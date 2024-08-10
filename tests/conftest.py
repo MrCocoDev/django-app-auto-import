@@ -8,9 +8,9 @@
 """
 
 import sys
+from importlib import reload
 
 import pytest
-from django.apps import apps
 
 
 @pytest.fixture(autouse=True)
@@ -19,14 +19,20 @@ def automatic_cleanup():
     Clean up imported modules under test and reset Django so
     that it can set up again.
     """
+    from tests.example.example import settings as custom_settings
+    reload(custom_settings)
+
     yield None
-    for name in ('tests.example.other.custom', 'tests.example.third.custom'):
+    for name in ('tests.example.other.custom', 'tests.example.third.custom', ):
         try:
             sys.modules.pop(name)
         except KeyError:
             ...
 
-    # Trick Django into setting up again, maybe a little unpredictable
-    apps.ready = False
-    apps.loading = False
-    apps.app_configs = {}
+    from django.conf import settings
+    for k in dir(settings):
+        if k.startswith('AUTO_IMPORT'):
+            delattr(settings, k)
+
+    for k in dir(settings):
+        assert not k.startswith('AUTO_IMPORT')
