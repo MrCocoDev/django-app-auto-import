@@ -52,6 +52,11 @@ Quick Start
 ::
 
     # my.project.settings.py
+    INSTALLED_APPS = [
+        ...,
+        'cocodev.django.auto_import',
+        ...,
+    ]
     AUTO_IMPORT = 'startup'  # Automatically imports `startup.py` in all apps
 
 This is a pretty simple library so there is not much more to it.
